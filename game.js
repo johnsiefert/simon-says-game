@@ -33,14 +33,16 @@ nextSequence()
  }, 1000);
 }
     } else {
-         console.log("wrong")
+        playSound("wrong");
+        $("body").addClass("game-over");
+        setTimeout(function () {
+            $("body").removeClass("game-over");
+          }, 200);
+          $("#level-title").text("Game Over, Press Any key to Restart");
+          
+          startOver()
     }
     }
-    // $(document).keypress(function (event) {
-    //     if(String.fromCharCode(event.which)==='a'){
-    //         console.log(nextSequence())
-    //     }
-    // })
 
 //keypress random colors
 const nextSequence = () => {
@@ -71,8 +73,14 @@ const animatePress = (currentColor) => {
     setTimeout(function () {
       $("#" + currentColor).removeClass("pressed");
     }, 100);
+
   }
 
+  const startOver = () => {
+    level = 0;
+    gamePattern = [];
+    started = false;
+}
 
 
 
